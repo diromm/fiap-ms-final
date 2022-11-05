@@ -1,14 +1,19 @@
-# Quarkus-Camel with Debezium(optionally w/Kafka) and Infinispan
+# FIAP - Trabalho final de Microsservices
 
-## Project for Leaning  -  It's not intended to be used in production
+## Trabalho implementando um microsserviços com uso do apache Camel, linguagem Java Quarkus, banco de dados Postgress
 
-This project is only for apply some concepts of using the framework Apáche-Camel in a Quarkus project for sourcing from a Change Data Capture provided by Debezium engine and sink into a Infinispan cluster.
+Esse projeto é uma prova de conceito de um microsserviço usando o framework Apache-Camel em um proejto quarkus para abastecer uma Captura de mudança de dados - Change Data Capture (CDC) utilizando a engine do Debezium e disponibilizando em um cache Clusterizado de Infinispan.
 
-There is 2 versions of the source-sink process:
-- Using Camel-Quarkus with Debezium Embbeded plugin (camel routing directly from postgres to a Infinispan cache)
-- Using Kafka + Kafka-Connect with debezium plugin + Camel-quarkus routing from kafka to a Infinispan cache.
+## Documentação das tecnologias
 
-There is no implementation of secutity protocols, just because the matter of proof of concept this project has been based.
+1. [Infinispan](https://infinispan.org/introduction/)
+
+2. [Debezium-PostgresSql](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) 
+
+Existem duas versões do processo fonte-cache:
+- Usando Camel-Quarkus com o plug-in do Debezium embutido (O Camel roteia diretamente do Postgress para o cache do Infinispan)
+- Usando Kafka + Kafka-Connect com o debezium plugin + Camel-quarkus roteando do kafka para o Infinispan.
+
 
 ## Components
 
@@ -18,7 +23,7 @@ There is no implementation of secutity protocols, just because the matter of pro
 
 3. [Monitoring stack](./monitoracao/docker-compose.yml) with prometheus and grafana containers
 
-4. Sourcing-sink implementation
+4.  Implementação Fonte-Cache 
   a. [Quarkus component using Camel with Debezium e Infinispan extensions.](./quarkus-kml-postgres2infinispan/)
   b. [Kafka + Zookeeper + KafkaConnect + KafkaUI containers](./kafka-docker/docker-compose.yml) and [Quarkus-Camel component routing from kafka to Infinispan.](./quarkus-kml-kafka2infinispan/)
 
