@@ -1,1 +1,0 @@
-user create "admin" -p "password" -g admin
