@@ -1,3 +1,7 @@
+# google MAPS API KEy
+
+AIzaSyBTC7qQKvH_S2a_BBHcQGuaWsm34XsEv_Q
+
 # FIAP - Trabalho de conclusão - 1SCJRBB -  Integration e Development Tools.
 
 ## Trabalho implementando um microsserviços com uso do apache Camel, linguagem Java Quarkus, banco de dados Postgress
