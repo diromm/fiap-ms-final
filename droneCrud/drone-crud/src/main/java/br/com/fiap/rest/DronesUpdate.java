@@ -42,7 +42,7 @@ public class DronesUpdate {
                 requisicao.getTemperatura(),
                 requisicao.getUmidade(),
                 requisicao.getRastreando());
-        return Response.status(Response.Status.OK).entity("Drone Criado!").build();
+        return Response.status(Response.Status.OK).entity(requisicao.getIdDrone()).build();
     }
 
 }
