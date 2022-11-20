@@ -11,6 +11,4 @@ public class IdDrones {
         this.idDrone = idDrone;
     }
 
-
-    
 }

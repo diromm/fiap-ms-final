@@ -20,7 +20,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-
 @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
 @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 @Path("/getDrone")
@@ -37,7 +36,7 @@ public class DronesResource {
     @Operation(summary = "TabelaDrones", description = "Descricao da sua operação: Retorna Drones por ID.")
     @APIResponse(responseCode = "200", description = "TabelaDrones", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = TabelaDrones.class)) })
-    public TabelaDrones servir(@PathParam ("idDrone")Integer idDrone) {
+    public TabelaDrones servir(@PathParam("idDrone") Integer idDrone) {
         return tratarRequisicao(idDrone);
     }
 
@@ -52,7 +51,7 @@ public class DronesResource {
     @Operation(summary = "TabelaDrones", description = "Descricao da sua operação: Retorna Todos os Drones.")
     @APIResponse(responseCode = "200", description = "TabelaDrones", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = TabelaDrones.class)) })
-    public  List<TabelaDrones> listar() {
+    public List<TabelaDrones> listar() {
         return tratarRequisicao();
     }
 
@@ -60,6 +59,5 @@ public class DronesResource {
         return idDroneService.buscarTodosDrones();
 
     }
-
 
 }
