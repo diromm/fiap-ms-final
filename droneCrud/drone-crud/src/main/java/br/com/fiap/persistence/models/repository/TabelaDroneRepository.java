@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 
-import br.com.fiap.persistence.models.TabelaDrones;;
+import br.com.fiap.persistence.models.TabelaDrones;
 
 @RequestScoped
 public class TabelaDroneRepository implements PanacheRepository<TabelaDrones> {
