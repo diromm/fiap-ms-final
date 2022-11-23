@@ -1,6 +1,6 @@
 {  
     "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
-    "database.hostname": "192.168.15.8",  
+    "database.hostname": "172.19.0.1",  
     "database.port": "5432",
     "database.user": "admin",
     "database.password": "password",
