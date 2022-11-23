@@ -10,7 +10,7 @@ public class Routes extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        final Bot bot = new Bot();
+        // final Bot bot = new Bot();
         // produces messages to kafka
         // from("timer:foo?period={{timer.period}}&delay={{timer.delay}}")
         // .routeId("FromTimer2Kafka")
@@ -22,8 +22,12 @@ public class Routes extends RouteBuilder {
         from("kafka:{{kafka.topic.name}}")
                 .routeId("FromKafka2Seda")
                 .log("Received : \"${body}\"")
-                .to ("telegram:bots")
-                .bean(bot, "process");
+                .to ("telegram:bots?chatId=155463659");
+                // .bean(bot, "process");
+
+        // from("telegram:bots")
+        // .to("telegram:bots");
+                
 
     }
 }

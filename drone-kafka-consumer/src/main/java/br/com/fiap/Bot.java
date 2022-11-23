@@ -1,29 +1,21 @@
 package br.com.fiap;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
+import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
-import io.quarkus.runtime.annotations.RegisterForReflection;
-import org.apache.camel.Handler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.camel.ConsumerTemplate;
 
 @ApplicationScoped
-@Named("bot")
-@RegisterForReflection
+@Path("example")
 public class Bot {
 
     @Inject
     ConsumerTemplate consumerTemplate;
 
-    private Logger log = LoggerFactory.getLogger(getClass());
-
-    @Handler
+    @GET
     public String process() {
-
-        log.info("Received message: {}", consumerTemplate.receiveBody("seda:kafka-messages", 10000, String.class));
-
         return consumerTemplate.receiveBody("seda:kafka-messages", 10000, String.class);
     }
-
 }
