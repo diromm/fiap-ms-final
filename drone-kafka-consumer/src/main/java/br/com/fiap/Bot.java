@@ -13,23 +13,17 @@ import org.slf4j.LoggerFactory;
 @RegisterForReflection
 public class Bot {
 
+    @Inject
+    ConsumerTemplate consumerTemplate;
+
     private Logger log = LoggerFactory.getLogger(getClass());
 
-    /**
-     * This method processes incoming messages and return responses.
-     *
-     * @param  message a message coming from a human user in a chat
-     * @return         the reply of the bot. Return null if you don't want to answer
-     */
     @Handler
-    public String process(String message) {
-        if (message == null) {
-            return null; // skip non-text messages
-        }
+    public String process() {
 
-        log.info("Received message: {}", message);
+        log.info("Received message: {}", consumerTemplate.receiveBody("seda:kafka-messages", 10000, String.class));
 
-        return "Why did you say \"" + message.replace("\"", "-") + "\"?";
+        return consumerTemplate.receiveBody("seda:kafka-messages", 10000, String.class);
     }
 
 }

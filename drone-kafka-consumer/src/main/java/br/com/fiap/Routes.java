@@ -22,10 +22,8 @@ public class Routes extends RouteBuilder {
         from("kafka:{{kafka.topic.name}}")
                 .routeId("FromKafka2Seda")
                 .log("Received : \"${body}\"")
-                .to("seda:kafka-messages");
+                .to ("telegram:bots")
+                .bean(bot, "process");
 
-        from("telegram:bots")
-                .bean(bot, "process")
-                .to("telegram:bots");
     }
 }
