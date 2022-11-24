@@ -1,0 +1,4 @@
+br/com/fiap/Bot.class
+br/com/fiap/schema/DroneSchema.class
+br/com/fiap/Routes.class
+br/com/fiap/KafkaResource.class

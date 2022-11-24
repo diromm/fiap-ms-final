@@ -29,7 +29,7 @@ export interface INewDrone {
 })
 
 export class CadastroService {
-  pathUrlBase = 'http://localhost:8080'
+  pathUrlBase = 'http://localhost:8095'
   constructor(private http: HttpClient) { }
 
 
