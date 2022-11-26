@@ -31,9 +31,9 @@ Esse é o projeto de conclusão da disciplina 1SCJRBB -  Integration e Developme
 4.  Implementação 
   a. [Kafka + Zookeeper + KafkaConnect + KafkaUI containers](./kafka-docker/docker-compose.yml)
 
-## Running
+## Executando
 
-1. Executando o Container Postgress
+### 1. Executando o Container Postgress
 * Go to Postgres-docker folder and run docker-compose
 ```shell script
 cd postgres-docker
@@ -43,68 +43,41 @@ cd ..
 
 * Para comodidade o ADMINER está exposto no seguinte endereço: http://localhost:8080 Com as seguintes credenciais. [docker-compose.yml](./postgres-docker/docker-compose.yml) 
 * Selecione a DataBase **postgres** e o Esquema público. **public**
-* Create option 'SQL Command' and execute the DDL:
+* Na Opção importar, importe o arquivo [create_tables.sql](postgres-docker\sql\create_tables.sql)
 
-```
-CREATE SEQUENCE drones_id_seq;
+![Importar Comandos](Imagens\importarComandosSQl.png)
 
-CREATE TABLE tb_drones (
-    id_drone integer NOT NULL DEFAULT nextval('drones_id_seq') ,
-    nome_drone character varying(255) NOT NULL, 
-    lat_drone double precision , 
-    lng_drone double precision ,
-    temperatura double precision , 
-    umidade double precision ,
-    rastreando BOOLEAN NOT NULL ,
-	CONSTRAINT "tb_drones_pkey" PRIMARY KEY (id_drone)
-);
-
-
-ALTER SEQUENCE drones_id_seq
-OWNED BY tb_drones.id_drone;
-
-```
-2. Executando a stack de monitoração.
-* vá para [monitoracao](./monitoracao) e execute o docker-compose
-```shell script
-cd monitoracao
-docker-compose up -d
-cd ..
-```
-The prometheus can be accessed at http://localhost:9090 and grafana accessed at http://localhost:3000 with "admin" and "password" as login/pswd credentials
-
-For the first login in grafana, import [Infinispan-Camel](./monitoracao/infinispan-grafana.json) dashboard and [Posgres-kafka-connector](./monitoracao/posgres-connector.json) dashboard.
-
-4a. Running the source-sink camel quarkus with Debezium Embbeded
-* Go to quarkus-kml-postgres2infinispan folder and execute the application
-```shell script
-cd quarkus-kml-postgres2infinispan
-./run.sh
-```
-* Any additional documentation of this project is [here](./quarkus-kml-postgres2infinispan/README.md)
-
-4b. Running a Kafka + Camel-Quarkus version
-* Go to [kafka-docker](./kafka-docker/) folder abd run docker-compose
+### 2. Executando Kafka + Debezium
+* Navegue até a pasta [kafka-docker](./kafka-docker/) e execute o docker-compose up
 ```shell script
 cd kafka-docker
 docker-compose up -d
 cd ..
 ```
-* Run the Kafka-Connect setup to create an connector to postgres with configuration in [connector.json](./kafka-docker/connector.json):
+* Execute Kafka-Connect setup para criar um conector do postgres com as configurações do [connector.json](./kafka-docker/connector.json).
+  * ATENÇÃO!! O IP contido em     "database.hostname": "localhost",   deve ser substituído pelo ip local da sua máquina
+
 ```shell script
 cd kafka-docker
 ./setconnector.sh
 cd ..
 ```
 
+Após a execução do script é possível na interface gráfica do kafka verificar e gerenciar os tópicos.
+
+[Tópicos kafka na UI](http://localhost:8180/ui/clusters/local/topics)
+
+![Kakfa-ui](Imagens\Kakfa-ui.png)
+
+Após isso o kafka estará totalmente configurado e produzindo mensagens com os dados inseridos nas tabelas. 
+
 * Go to [quarkus-kml-kafka2infinispan](./quarkus-kml-kafka2infinispan/) folder and execute the application
 ```shell script
 cd quarkus-kml-kafka2infinispan
 ./run.sh
 ```
-* Any additional documentation of this project is [here](./quarkus-kml-kafka2infinispan/README.md)
 
-## Working
+## Executando a aplicação web e subscritor:
 
 
 
