@@ -4,24 +4,36 @@
 
 Esse é o projeto de conclusão da disciplina 1SCJRBB -  Integration e Development Tools. Sua função é a integrar um microsserviço de gerenciamento de Drones com um microsserviço que gera alertas a depender do determinados parâmetros.
 
+## Pré requisitos
+
+* Sistema operacional compatível com Docker. 
+	* Todo projeto foi construindo no Ubuntu, pode apresentar problemas de conectividade em alguns serviços caso usado em WSL2.
+
+* Docker-compose para startar os serviços.
+
+* Recomendado uso de um client para execução de queries, por exemplo [DBeaver](https://dbeaver.io/download/).
+	* para comodidade na construção do Postgress foi disponibilizado um client do ADMINER que execute em Localhost.
+
 ## Documentação das tecnologias
 
 
 1. [Debezium-PostgresSql](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) 
+	* em resumo o Debezium é um conector kafka Open Source utilizado para Change Data Capture (CDC) - Captura de mudança de dados.
+	
+2. [Quarkus](https://quarkus.io/about/) + [Camel](https://camel.apache.org/manual/faq/what-is-camel.html)
+	* Quarkus é um framework para java Cloud Native desenvolvido para aplicações java que vão executar na núvem e compatível com a arquitetura Servless. O Apache Camel é um [ENTERPRISE INTEGRATION PATTERNS](https://camel.apache.org/components/3.18.x/eips/enterprise-integration-patterns.html)
 
 ## Components
 
-1. [Postgres container](./postgres-docker/docker-compose.yml) configured to use [logical decoding](https://www.postgresql.org/docs/current/logicaldecoding-explanation.html), following [Debezium Postgres Connector recomendation](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) with a adminer for UI with the databases.
+1. [Postgres container](./postgres-docker/docker-compose.yml) Configurado no modo de uso [logical decoding](https://www.postgresql.org/docs/current/logicaldecoding-explanation.html), Seguindo a seguinte documentação do Debezium: [Debezium Postgres Connector recomendation](https://debezium.io/documentation/reference/stable/connectors/postgresql.html).
 
-
-2. [Monitoring stack](./monitoracao/docker-compose.yml) with prometheus and grafana containers
 
 4.  Implementação 
   a. [Kafka + Zookeeper + KafkaConnect + KafkaUI containers](./kafka-docker/docker-compose.yml)
 
 ## Running
 
-1. Ligando o Postgress
+1. Executando o Container Postgress
 * Go to Postgres-docker folder and run docker-compose
 ```shell script
 cd postgres-docker
@@ -30,7 +42,7 @@ cd ..
 ```
 
 * Para comodidade o ADMINER está exposto no seguinte endereço: http://localhost:8080 Com as seguintes credenciais. [docker-compose.yml](./postgres-docker/docker-compose.yml) 
-* Select DB **postgres** and schema **public**
+* Selecione a DataBase **postgres** e o Esquema público. **public**
 * Create option 'SQL Command' and execute the DDL:
 
 ```
