@@ -18,6 +18,10 @@ Os Alertas são enviados para o seguinte chat bot do telegram:
 * Recomendado uso de um client para execução de queries, por exemplo [DBeaver](https://dbeaver.io/download/).
 	* para comodidade na construção do Postgress foi disponibilizado um client do ADMINER que execute em Localhost.
 
+* Java 11 com MVN
+
+* NodeJS acima do 16 com NPM. 
+
 ## Envio de alertas para o chatBot no Telegram:
 
 * Será necessário alterar alguns dados sobre o chat ID na seguinte classe:
@@ -55,7 +59,7 @@ Para conseguir o seu próprio chatId é necessário no telegram entrar no seguin
 ## Executando
 
 ### 1. Executando o Container Postgress
-* Go to Postgres-docker folder and run docker-compose
+* No dirretório Postgres-docker execute o docker-compose
 ```shell script
 cd postgres-docker
 docker-compose up -d
@@ -90,23 +94,42 @@ Após a execução do script é possível na interface gráfica do kafka verific
 
 ![Kakfa-ui](Imagens/Kakfa-ui.png)
 
-Após isso o kafka estará totalmente configurado e produzindo mensagens com os dados inseridos nas tabelas. 
-
-* Go to [quarkus-kml-kafka2infinispan](./quarkus-kml-kafka2infinispan/) folder and execute the application
-```shell script
-cd quarkus-kml-kafka2infinispan
-./run.sh
-```
+Após isso o kafka estará totalmente configurado e produzindo mensagens kafka com os dados inseridos nas tabelas. 
 
 ## Executando a aplicação web e subscritor:
 
+### OBS: Uma vez que a aplicação não foi containerizada e tanto o kakfa quanto o banco executam em docker local os microsserviços da aplicação Web, o MS de CRUD das tabelas e o Kafka consumer devem ser executados localmente em modo dev. 
+
+* 1 CRUD das tabelas.
+
+No diretório drone-crud execute mvn quarkus:dev. O serviço de Crud irá responder em:
+
+localhost:8095.
+
+* 2 kafka Consumer
+
+No diretório drone-kafka-consumer também execute mvn quarkus:dev. o Serviço de subscrição irá responder na porta: 
+
+localhost:8093.
+
+ATENÇÃO!! 
+
+O endereço do broker do kafka deve ser substituído no application.properties.
+
+[application.properties](drone-kafka-consumer/src/main/resources/application.properties)
+
+
+* 3 Aplicação web
+
+Diretório: webApp/drones-web
+
+executar npm install e logo em seguida npm start.
+
+A aplicação vai responder em localhost:4200
 
 
 ## Backlog
-### In this project
-1. Enhance metrics labeling in prometheus and adjust grafana dashboard
-2. Automate setting-up project
+### Neste projeto
 
-### Complement of project
-1. Another component to listen to Infinispan events of the 'cliente' cache and calculaing how long it takes to go from table to cache using this approach.
-2. Implement kubernetes version of running
+1. Automatizar em um único docker-compose  esse projeto.
+
