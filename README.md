@@ -4,6 +4,8 @@
 
 Esse é o projeto de conclusão da disciplina 1SCJRBB -  Integration e Development Tools. Sua função é a integrar um microsserviço de gerenciamento de Drones com um microsserviço que gera alertas a depender do determinados parâmetros.
 
+Os Alertas são enviados para um chat Bot do Telegram.
+
 ## Pré requisitos
 
 * Sistema operacional compatível com Docker. 
