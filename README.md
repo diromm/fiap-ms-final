@@ -67,7 +67,7 @@ Após a execução do script é possível na interface gráfica do kafka verific
 
 [Tópicos kafka na UI](http://localhost:8180/ui/clusters/local/topics)
 
-![Kakfa-ui](./imagens/Kakfa-ui.png)
+![Kakfa-ui](Imagens/Kakfa-ui.png)
 
 Após isso o kafka estará totalmente configurado e produzindo mensagens com os dados inseridos nas tabelas. 
 
