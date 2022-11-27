@@ -45,7 +45,7 @@ cd ..
 * Selecione a DataBase **postgres** e o Esquema público. **public**
 * Na Opção importar, importe o arquivo [create_tables.sql](postgres-docker\sql\create_tables.sql)
 
-![Importar Comandos](Imagens\importarComandosSQl.png)
+![Importar Comandos](Imagens/importarComandosSQl.png)
 
 ### 2. Executando Kafka + Debezium
 * Navegue até a pasta [kafka-docker](./kafka-docker/) e execute o docker-compose up
@@ -67,7 +67,7 @@ Após a execução do script é possível na interface gráfica do kafka verific
 
 [Tópicos kafka na UI](http://localhost:8180/ui/clusters/local/topics)
 
-![Kakfa-ui](.\Imagens\Kakfa-ui.png)
+![Kakfa-ui](./magens/Kakfa-ui.png)
 
 Após isso o kafka estará totalmente configurado e produzindo mensagens com os dados inseridos nas tabelas. 
 
