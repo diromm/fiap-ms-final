@@ -38,14 +38,6 @@ public class Routes extends RouteBuilder {
         final Predicate isUpdatetOperation = header(HEADER_OPERATION).isEqualTo(DEBEZIUM_UPDATE);
         final Predicate isDeleteOperation = header(HEADER_OPERATION).isEqualTo(DEBEZIUM_DELETE);
 
-        // final Bot bot = new Bot();
-        // produces messages to kafka
-        // from("timer:foo?period={{timer.period}}&delay={{timer.delay}}")
-        // .routeId("FromTimer2Kafka")
-        // .setBody().simple("Message #${exchangeProperty.CamelTimerCounter}")
-        // .to("kafka:{{kafka.topic.name}}")
-        // .log("Message correctly sent to the topic! : \"${body}\" ");
-
         // kafka consumer
         final DroneSchema dc = new DroneSchema();
 
@@ -60,19 +52,7 @@ public class Routes extends RouteBuilder {
                 .unmarshal(new JacksonDataFormat(dc.getClass()))
                 .log(LoggingLevel.WARN, "${body}")
                 .to("telegram:bots?chatId=155463659");
-                
-
-
-
-        // from("kafka:{{kafka.topic.name}}")
-        // .routeId("FromKafka2Seda")
-        // .log("Received : \"${body}\"")
-        // .to("telegram:bots?chatId=155463659");
-
-        // .bean(bot, "process");
-
-        // from("telegram:bots")
-        // .to("telegram:bots");
+            
 
     }
 }
