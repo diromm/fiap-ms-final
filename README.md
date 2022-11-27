@@ -4,7 +4,9 @@
 
 Esse é o projeto de conclusão da disciplina 1SCJRBB -  Integration e Development Tools. Sua função é a integrar um microsserviço de gerenciamento de Drones com um microsserviço que gera alertas a depender do determinados parâmetros.
 
-Os Alertas são enviados para um chat Bot do Telegram.
+Os Alertas são enviados para o seguinte chat bot do telegram:
+
+[DronesTrackBot](https://t.me/DronesTrackBot)
 
 ## Pré requisitos
 
@@ -18,7 +20,20 @@ Os Alertas são enviados para um chat Bot do Telegram.
 
 ## Envio de alertas para o chatBot no Telegram:
 
-* Será necessário alterar alguns dados sobre o chat ID e também o telegram token no projeto
+* Será necessário alterar alguns dados sobre o chat ID na seguinte classe:
+
+[Routes.java](drone-kafka-consumer/src/main/java/br/com/fiap/Routes.java)
+
+Na linha 54 onde é solicitado o Chat Id.
+
+![chatId](Imagens/chat-id.png)
+
+Para conseguir o seu próprio chatId é necessário no telegram entrar no seguinte bot:
+
+[userinfobot](https://t.me/userinfobot)
+
+![UserInfoBot](Imagens/userInfoBot.png)
+
 
 ## Documentação das tecnologias
 
