@@ -16,6 +16,10 @@ Os Alertas são enviados para um chat Bot do Telegram.
 * Recomendado uso de um client para execução de queries, por exemplo [DBeaver](https://dbeaver.io/download/).
 	* para comodidade na construção do Postgress foi disponibilizado um client do ADMINER que execute em Localhost.
 
+## Envio de alertas para o chatBot no Telegram:
+
+* Será necessário alterar alguns dados sobre o chat ID e também o telegram token no projeto
+
 ## Documentação das tecnologias
 
 
