@@ -1,9 +1,5 @@
 package br.com.fiap.schema;
 
-import org.apache.camel.Body;
-import org.apache.camel.Exchange;
-import org.apache.camel.model.SetBodyDefinition;
-
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection

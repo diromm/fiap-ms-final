@@ -2,14 +2,11 @@ package br.com.fiap;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import br.com.fiap.schema.DroneSchema;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.Predicate;
 import org.apache.camel.builder.RouteBuilder;
-
-import br.com.fiap.schema.DroneSchema;
-
 import org.apache.camel.component.jackson.JacksonDataFormat;
-import org.apache.camel.model.dataformat.JsonLibrary;
 
 @ApplicationScoped
 public class Routes extends RouteBuilder {
@@ -46,13 +43,12 @@ public class Routes extends RouteBuilder {
                 .setBody(jsonpath("$.payload"))
                 .setHeader(HEADER_KEY, jsonpath("after.id_drone"))
                 .log(LoggingLevel.WARN, "${body}")
-                .setBody(jsonpath("after"))            
+                .setBody(jsonpath("after"))
                 .log(LoggingLevel.WARN, "${body}")
                 .marshal().json()
                 .unmarshal(new JacksonDataFormat(dc.getClass()))
                 .log(LoggingLevel.WARN, "${body}")
                 .to("telegram:bots?chatId=155463659");
-            
 
     }
 }

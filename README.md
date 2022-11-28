@@ -2,6 +2,12 @@
 
 ## Trabalho para integração de microsservices
 
+### Foi criado um video no Youtube com a Demonstração!!!
+
+https://youtu.be/fHTt2afZOiU
+
+
+
 Esse é o projeto de conclusão da disciplina 1SCJRBB -  Integration e Development Tools. Sua função é a integrar um microsserviço de gerenciamento de Drones com um microsserviço que gera alertas a depender do determinados parâmetros.
 
 Os Alertas são enviados para o seguinte chat bot do telegram:
@@ -123,9 +129,11 @@ O endereço do broker do kafka deve ser substituído no application.properties.
 
 Diretório: webApp/drones-web
 
-executar npm install e logo em seguida npm start.
+executar npm install --legacy-peer-deps e logo em seguida npm start.
 
-A aplicação vai responder em localhost:4200
+A aplicação vai responder em localhost:4200. 
+
+Agora basta cadastrar os Drones e receber as notificações no Telegram!
 
 
 ## Backlog
